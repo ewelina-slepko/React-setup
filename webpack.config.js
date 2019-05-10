@@ -20,6 +20,7 @@ module.exports = {
             }
         ]
     },
+    devtool: 'cheap-module-eval-source-map',
     plugins: [
         new HtmlWebPackPlugin({
             template: './src/index.html'
