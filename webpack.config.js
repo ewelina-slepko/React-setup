@@ -10,22 +10,29 @@ module.exports = {
         filename: 'bundle.js'
     },
     module: {
-        rules: [
-            {
-                test: /\.jsx?$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader'
-                }
-            }
+        rules: [{
+            test: /\.jsx?$/,
+            exclude: /node_modules/,
+            use: {
+                loader: 'babel-loader'
+            },
+        },
+        {
+            test: /\.css$/,
+            use: [
+                'style-loader',
+                'css-loader'
+            ]
+        }
         ]
     },
-    devtool: 'cheap-module-eval-source-map',
+    resolve: {
+        extensions: ['*', '.js', '.jsx']
+    },
     plugins: [
         new HtmlWebPackPlugin({
             template: './src/index.html'
         }),
-        new CleanWebpackPlugin(),
         new WorkboxPlugin.GenerateSW()
     ]
 }
