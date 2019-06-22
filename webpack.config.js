@@ -23,7 +23,37 @@ module.exports = {
                 'style-loader',
                 'css-loader'
             ]
-        }
+        },
+        {
+            test: /\.(gif|png|jpe?g|svg)$/i,
+            use: [
+                'file-loader',
+                {
+                    loader: 'image-webpack-loader',
+                    options: {
+                        bypassOnDebug: true,
+                        disable: true,
+                        mozjpeg: {
+                            progressive: true,
+                            quality: 65
+                        },
+                        optipng: {
+                            enabled: false,
+                        },
+                        pngquant: {
+                            quality: '65-90',
+                            speed: 4
+                        },
+                        gifsicle: {
+                            interlaced: false,
+                        },
+                        webp: {
+                            quality: 75
+                        }
+                    },
+                },
+            ],
+        },
         ]
     },
     devtool: 'cheap-module-eval-source-map',
